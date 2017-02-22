@@ -1,15 +1,16 @@
 package com.library.jianjunhuang.okhttputils.okhttputils;
 
 import android.os.Handler;
-import com.jianjunhuang.demo.okhttputils.okhttputils.builder.GetBuilder;
-import com.jianjunhuang.demo.okhttputils.okhttputils.builder.PostBuilder;
-import com.jianjunhuang.demo.okhttputils.okhttputils.callback.ResultCallback;
+import com.library.jianjunhuang.okhttputils.okhttputils.builder.GetBuilder;
+import com.library.jianjunhuang.okhttputils.okhttputils.builder.PostBuilder;
+import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONException;
 
 /**
  * @author jianjunhuang.me@foxmail.com
@@ -111,7 +112,13 @@ public class OkHttpUtils {
             @Override
             public void run() {
                 if(callback != null){
-                    callback.onResponse(response);
+                    try {
+                        callback.onResponse(response);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

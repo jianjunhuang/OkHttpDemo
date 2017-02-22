@@ -1,8 +1,8 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.builder;
 
 import android.net.Uri;
-import com.jianjunhuang.demo.okhttputils.okhttputils.request.GetRequest;
-import com.jianjunhuang.demo.okhttputils.okhttputils.request.RequestCall;
+import com.library.jianjunhuang.okhttputils.okhttputils.request.GetRequest;
+import com.library.jianjunhuang.okhttputils.okhttputils.request.RequestCall;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

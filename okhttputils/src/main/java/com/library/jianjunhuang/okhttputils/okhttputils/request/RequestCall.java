@@ -1,7 +1,7 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.request;
 
-import com.jianjunhuang.demo.okhttputils.okhttputils.OkHttpUtils;
-import com.jianjunhuang.demo.okhttputils.okhttputils.callback.ResultCallback;
+import com.library.jianjunhuang.okhttputils.okhttputils.OkHttpUtils;
+import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
 import okhttp3.Call;
 import okhttp3.Request;
 

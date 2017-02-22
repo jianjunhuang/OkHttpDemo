@@ -1,6 +1,6 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.builder;
 
-import com.jianjunhuang.demo.okhttputils.okhttputils.request.RequestCall;
+import com.library.jianjunhuang.okhttputils.okhttputils.request.RequestCall;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;

@@ -1,7 +1,7 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.builder;
 
-import com.jianjunhuang.demo.okhttputils.okhttputils.request.PostRequest;
-import com.jianjunhuang.demo.okhttputils.okhttputils.request.RequestCall;
+import com.library.jianjunhuang.okhttputils.okhttputils.request.PostRequest;
+import com.library.jianjunhuang.okhttputils.okhttputils.request.RequestCall;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

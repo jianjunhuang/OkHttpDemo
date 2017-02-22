@@ -1,6 +1,6 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.request;
 
-import com.jianjunhuang.demo.okhttputils.okhttputils.callback.ResultCallback;
+import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
 import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.Request;
