@@ -1,6 +1,7 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.request;
 
 import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.Request;
@@ -23,8 +24,11 @@ public abstract class OkHttpRequest<T> {
 
     protected OkHttpRequest(String url,Map<String,String>params,Map<String,String>headers){
         this.url = url;
-        this.params = params;
         this.headers = headers;
+        if(params == null){
+            this.params = new LinkedHashMap<>();
+        }
+        this.params = params;
 
         //init some params
         builder.url(url);
@@ -52,6 +56,9 @@ public abstract class OkHttpRequest<T> {
     }
 
     protected void appendHeaders(){
+        if(headers == null){
+            headers = new LinkedHashMap<>();
+        }
         Headers.Builder headerBuilder = new Headers.Builder();
         if(headers == null || headers.isEmpty()){
             return;
