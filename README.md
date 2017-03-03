@@ -4,6 +4,14 @@ OkHttp demo include OkHttp utils library
 ```
 compile 'com.library.jianjunhuang.okhttputils:okhttputils:0.0.2'
 ```
+## 出事化
+```
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .build();
+        OkHttpUtils.initUtils(okHttpClient);
+```
 ## 代码
 ```
 private void getAsy(String url) {
