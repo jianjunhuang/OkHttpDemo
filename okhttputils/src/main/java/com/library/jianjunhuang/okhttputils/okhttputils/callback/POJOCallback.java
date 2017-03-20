@@ -10,18 +10,17 @@ import org.json.JSONException;
  * @since 2017/2/22.
  */
 
-public abstract class POJOCallback<T> extends ResultCallback{
+public abstract class POJOCallback<T> extends ResultCallback {
 
   private Class<T> clazz;
 
-  public POJOCallback(Class<T> clazz){
+  public POJOCallback(Class<T> clazz) {
     this.clazz = clazz;
   }
 
-  @Override public void onResponse(Response response) throws IOException, JSONException {
-    String jsonDate = response.body().string();
+  @Override public void onResponse(String response) throws IOException, JSONException {
     Gson gson = new Gson();
-    T bean = gson.fromJson(jsonDate,clazz);
+    T bean = gson.fromJson(response, clazz);
     onPOJO(bean);
   }
 

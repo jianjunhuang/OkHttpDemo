@@ -18,121 +18,112 @@ import org.json.JSONException;
  */
 
 public class OkHttpUtils {
-    private static OkHttpUtils mInstance;
-    private OkHttpClient client;
-    private Handler mHandler;
-//    private Platform platform;
-    /**
-     * 创建 OkHttpClient 对象
-     * @param client
-     */
-    private OkHttpUtils(OkHttpClient client) {
-        if (client == null) {
-            client = new OkHttpClient();
-        } else {
-            this.client = client;
-        }
+  private static OkHttpUtils mInstance;
+  private OkHttpClient client;
+  private Handler mHandler;
+  //    private Platform platform;
 
-        mHandler = new Handler();
-//        platform = Platform.get();
+  /**
+   * 创建 OkHttpClient 对象
+   */
+  private OkHttpUtils(OkHttpClient client) {
+    if (client == null) {
+      client = new OkHttpClient();
+    } else {
+      this.client = client;
     }
 
-    /**
-     * 传入 OkHttpClient 对象,初始化 OkHttpUtils 对象
-     * @param client
-     * @return
-     */
-    public static OkHttpUtils initUtils(OkHttpClient client) {
+    mHandler = new Handler();
+    //        platform = Platform.get();
+  }
+
+  /**
+   * 传入 OkHttpClient 对象,初始化 OkHttpUtils 对象
+   */
+  public static OkHttpUtils initUtils(OkHttpClient client) {
+    if (mInstance == null) {
+      synchronized (OkHttpUtils.class) {
         if (mInstance == null) {
-            synchronized (OkHttpUtils.class) {
-                if (mInstance == null) {
-                    mInstance = new OkHttpUtils(client);
-                }
-            }
+          mInstance = new OkHttpUtils(client);
         }
-        return mInstance;
+      }
     }
+    return mInstance;
+  }
 
-    /**
-     * 获取 OkHttpUtils 对象实例
-     * @return
-     */
-    public static OkHttpUtils getInstance() {
-        return initUtils(null);
-    }
+  /**
+   * 获取 OkHttpUtils 对象实例
+   */
+  public static OkHttpUtils getInstance() {
+    return initUtils(null);
+  }
 
-    /**
-     * 获取 OkHttpClient 对象实例
-     * @return
-     */
-    public OkHttpClient getClientInstance() {
-        return client;
-    }
+  /**
+   * 获取 OkHttpClient 对象实例
+   */
+  public OkHttpClient getClientInstance() {
+    return client;
+  }
 
-    //TODO setting client
+  //TODO setting client
 
-    /**
-     * 设置 OkHttpClient
-     * @return
-     */
-    public OkHttpUtils initOkHttpClient() {
+  /**
+   * 设置 OkHttpClient
+   */
+  public OkHttpUtils initOkHttpClient() {
 
-        return initUtils(null);
-    }
+    return initUtils(null);
+  }
 
-    public GetBuilder getAsy(){
-        return new GetBuilder();
-    }
+  public GetBuilder getAsy() {
+    return new GetBuilder();
+  }
 
-    public PostBuilder postAsy(){
-        return new PostBuilder();
-    }
+  public PostBuilder postAsy() {
+    return new PostBuilder();
+  }
 
-    public void execute(ResultCallback callback, Request request){
-        Call call = client.newCall(request);
-        dealResult(call,callback);
-    }
+  public void execute(ResultCallback callback, Request request) {
+    Call call = client.newCall(request);
+    dealResult(call, callback);
+  }
 
-    private void dealResult(Call call,final ResultCallback callback) {
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call ,IOException e) {
-                sendFailedCallback(call,callback,e);
-            }
+  private void dealResult(Call call, final ResultCallback callback) {
+    call.enqueue(new Callback() {
+      @Override public void onFailure(Call call, IOException e) {
+        sendFailedCallback(call, callback, e);
+      }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                sendSuccessCallback(response,callback);
-            }
-        });
-    }
+      @Override public void onResponse(Call call, Response response) throws IOException {
+        sendSuccessCallback(response.body().string(), callback);
+      }
+    });
+  }
 
-    private void sendSuccessCallback(final Response response, final ResultCallback callback) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if(callback != null){
-                    try {
-                        callback.onResponse(response);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
+  private void sendSuccessCallback(final String response, final ResultCallback callback) {
+    mHandler.post(new Runnable() {
+      @Override public void run() {
+        if (callback != null) {
+          try {
+            callback.onResponse(response);
+          } catch (IOException e) {
+            e.printStackTrace();
+          } catch (JSONException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    });
+  }
 
-    private void sendFailedCallback(final Call call,final ResultCallback callback,final IOException e) {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if(callback != null){
-                    callback.onError(call,e);
-                }
-            }
-        });
-    }
-
+  private void sendFailedCallback(final Call call, final ResultCallback callback,
+      final IOException e) {
+    mHandler.post(new Runnable() {
+      @Override public void run() {
+        if (callback != null) {
+          callback.onError(call, e);
+        }
+      }
+    });
+  }
 }

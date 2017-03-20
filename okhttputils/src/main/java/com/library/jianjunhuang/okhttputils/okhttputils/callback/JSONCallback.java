@@ -14,8 +14,8 @@ import org.json.JSONObject;
 public abstract class JSONCallback extends ResultCallback {
   public abstract void onError(Call call, IOException e);
 
-  @Override public void onResponse(Response response) throws IOException, JSONException {
-    JSONObject jsonObject = new JSONObject(response.body().string());
+  @Override public void onResponse(String response) throws IOException, JSONException {
+    JSONObject jsonObject = new JSONObject(response);
     onJSON(jsonObject);
   }
 
