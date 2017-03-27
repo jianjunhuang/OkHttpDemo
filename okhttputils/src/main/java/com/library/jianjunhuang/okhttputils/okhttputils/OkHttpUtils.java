@@ -1,8 +1,10 @@
 package com.library.jianjunhuang.okhttputils.okhttputils;
 
 import android.os.Handler;
+import android.util.Log;
 import com.library.jianjunhuang.okhttputils.okhttputils.builder.GetBuilder;
 import com.library.jianjunhuang.okhttputils.okhttputils.builder.PostBuilder;
+import com.library.jianjunhuang.okhttputils.okhttputils.builder.PostJsonBuilder;
 import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
 import java.io.IOException;
 import okhttp3.Call;
@@ -83,6 +85,10 @@ public class OkHttpUtils {
     return new PostBuilder();
   }
 
+  public PostJsonBuilder postJsonAsy() {
+    return new PostJsonBuilder();
+  }
+
   public void execute(ResultCallback callback, Request request) {
     Call call = client.newCall(request);
     dealResult(call, callback);
@@ -95,7 +101,9 @@ public class OkHttpUtils {
       }
 
       @Override public void onResponse(Call call, Response response) throws IOException {
-        sendSuccessCallback(response.body().string(), callback);
+        String str = response.body().string();
+        Log.e("okHttp", str);
+        sendSuccessCallback(str, callback);
       }
     });
   }

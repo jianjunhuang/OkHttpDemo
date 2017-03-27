@@ -20,17 +20,17 @@ public class PostRequest extends OkHttpRequest<PostRequest> {
   @Override protected RequestBody buildRequestBody() {
     RequestBody requestBody;
     FormBody.Builder builder = new FormBody.Builder();
-    StringBuffer sb = new StringBuffer();
+    //StringBuffer sb = new StringBuffer();
 
     for (Map.Entry<String, String> entry : params.entrySet()) {
-      //builder.add(entry.getKey(),entry.getValue());
-      sb.append(entry.getKey() + "=" + entry.getValue() + "&");
+      builder.add(entry.getKey(),entry.getValue());
+      //sb.append(entry.getKey() + "=" + entry.getValue() + "&");
     }
 
-    //requestBody = builder.build();
-    requestBody =
-        RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
-            sb.toString());
+    requestBody = builder.build();
+    //requestBody =
+    //    RequestBody.create(MediaType.parse("application/x-www-form-urlencoded; charset=utf-8"),
+    //        sb.toString());
     return requestBody;
   }
 
