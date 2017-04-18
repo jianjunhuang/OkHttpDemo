@@ -3,6 +3,7 @@ package com.demo.jianjunhuang.okhttpdemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,7 +12,6 @@ import com.library.jianjunhuang.okhttputils.okhttputils.callback.JSONCallback;
 import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
 import java.io.IOException;
 import okhttp3.Call;
-import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +27,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
 
   private final String GET_TEST_URL =
       "http://508cst.gcu.edu.cn:8080/tentcooTools/api/v1/auth/check_network";
-  private final String POST_TEST_URL = "http://api.1-blog.com/biz/bizserver/article/list.do";
+  private final String POST_TEST_URL = "https://jianjunhuang.github.io/test";
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
 
   private void getAsy(String url) {
     OkHttpUtils.getInstance().getAsy().baseURL(url).build().execute(new ResultCallback() {
-      @Override public void onError(Call call, IOException e) {
+      @Override public void onError(Call call, Exception e) {
 
       }
 
@@ -60,17 +60,18 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
 
   private void postAsy(String url) {
     OkHttpUtils.getInstance()
-        .postAsy()
+        .postJsonAsy()
         .baseURL(url)
-        .params("size", "10")
         .build()
-        .execute(new ResultCallback() {
-          @Override public void onError(Call call, IOException e) {
-            Toast.makeText(SampleActivity.this, "err", Toast.LENGTH_SHORT).show();
+        .execute(new JSONCallback() {
+          @Override public void onError(Call call, Exception e) {
+            Log.e("tag",e.getMessage());
+            Toast.makeText(SampleActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
           }
 
-          @Override public void onResponse(String response) {
-            Toast.makeText(SampleActivity.this, response, Toast.LENGTH_SHORT).show();
+          @Override public void onJSON(JSONObject jsonObject) {
+            Log.w("tag",jsonObject.toString());
+            Toast.makeText(SampleActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
           }
         });
   }

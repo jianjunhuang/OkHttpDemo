@@ -102,7 +102,6 @@ public class OkHttpUtils {
 
       @Override public void onResponse(Call call, Response response) throws IOException {
         String str = response.body().string();
-        Log.e("okHttp", str);
         sendSuccessCallback(str, callback);
       }
     });

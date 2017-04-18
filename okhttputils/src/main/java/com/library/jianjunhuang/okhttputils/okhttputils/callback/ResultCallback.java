@@ -11,7 +11,7 @@ import org.json.JSONException;
  */
 
 public abstract class ResultCallback<T> {
-    public abstract void onError(Call call, IOException e);
+    public abstract void onError(Call call, Exception e);
 
     public abstract void onResponse(String response) throws IOException, JSONException;
 }
