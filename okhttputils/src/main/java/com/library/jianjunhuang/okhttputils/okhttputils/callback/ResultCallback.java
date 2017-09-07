@@ -1,8 +1,10 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.callback;
 
 import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.Response;
+
 import org.json.JSONException;
 
 /**
@@ -11,7 +13,7 @@ import org.json.JSONException;
  */
 
 public abstract class ResultCallback<T> {
-    public abstract void onError(Call call, Exception e);
+    public abstract void onError(Call call, int code, Exception e);
 
-    public abstract void onResponse(String response) throws IOException, JSONException;
+    public abstract void onResponse(String response, int code) throws IOException, JSONException;
 }

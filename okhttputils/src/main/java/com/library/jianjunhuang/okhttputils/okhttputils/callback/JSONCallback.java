@@ -1,7 +1,9 @@
 package com.library.jianjunhuang.okhttputils.okhttputils.callback;
 
 import java.io.IOException;
+
 import okhttp3.Call;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,18 +13,18 @@ import org.json.JSONObject;
  */
 
 public abstract class JSONCallback extends ResultCallback {
-  public abstract void onError(Call call, Exception e);
 
-  @Override public void onResponse(String response) throws IOException {
-    JSONObject jsonObject = null;
-    try {
-      jsonObject = new JSONObject(response);
-      onJSON(jsonObject);
-    } catch (JSONException e) {
-      e.printStackTrace();
-      onError(null, e);
+    @Override
+    public void onResponse(String response, int code) throws IOException {
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(response);
+            onJSON(jsonObject, code);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            onError(null, code, e);
+        }
     }
-  }
 
-  public abstract void onJSON(JSONObject jsonObject);
+    public abstract void onJSON(JSONObject jsonObject, int code);
 }
