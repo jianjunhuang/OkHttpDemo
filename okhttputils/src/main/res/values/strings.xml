@@ -2,7 +2,7 @@
     <string name="app_name">OkHttpUtils</string>
     <string name="code_200">成功</string>
     <string name="code_202">已接受用于处理，但处理尚未完成</string>
-    <stirng name="code_203">部分信息-返回的信息只是一部分</stirng>
+    <string name="code_203">部分信息-返回的信息只是一部分</string>
     <string name="code_204">无响应 - 以接收请求，但不存在要或送的信息</string>
     <string name="code_301">已移动 — 请求的数据具有新的位置且更改是永久的</string>
     <string name="code_302">已找到 — 请求的数据临时具有不同 URI。</string>

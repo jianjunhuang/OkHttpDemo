@@ -7,6 +7,7 @@ import com.library.jianjunhuang.okhttputils.okhttputils.builder.GetBuilder;
 import com.library.jianjunhuang.okhttputils.okhttputils.builder.PostBuilder;
 import com.library.jianjunhuang.okhttputils.okhttputils.builder.PostJsonBuilder;
 import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
+import com.library.jianjunhuang.okhttputils.okhttputils.https.HttpCode;
 
 import java.io.IOException;
 

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.library.jianjunhuang.okhttputils.okhttputils.OkHttpUtils;
 import com.library.jianjunhuang.okhttputils.okhttputils.callback.JSONCallback;
 import com.library.jianjunhuang.okhttputils.okhttputils.callback.ResultCallback;
+import com.library.jianjunhuang.okhttputils.okhttputils.https.HttpCode;
 
 import java.io.IOException;
 
@@ -55,12 +56,12 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
         OkHttpUtils.getInstance().getAsy().baseURL(url).build().execute(new ResultCallback() {
             @Override
             public void onError(Call call, int code, Exception e) {
-                Toast.makeText(SampleActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SampleActivity.this, e.getMessage() + " " + HttpCode.getCodeExp(code), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onResponse(String response, int code) throws IOException, JSONException {
-                Toast.makeText(SampleActivity.this, response + " code = " + code, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SampleActivity.this, response + " code = " + code + " " + HttpCode.getCodeExp(code), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -74,13 +75,13 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onError(Call call, int code, Exception e) {
                         Log.e("tag", e.getMessage());
-                        Toast.makeText(SampleActivity.this, e.getMessage() + " err code = " + code, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SampleActivity.this, e.getMessage() + " err code = " + code + " " + HttpCode.getCodeExp(code), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onJSON(JSONObject jsonObject, int code) {
                         Log.w("tag", jsonObject.toString());
-                        Toast.makeText(SampleActivity.this, jsonObject.toString() + " code = " + code, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SampleActivity.this, jsonObject.toString() + " code = " + code + " " + HttpCode.getCodeExp(code), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -2,6 +2,8 @@ package com.demo.jianjunhuang.okhttpdemo;
 
 import android.app.Application;
 import com.library.jianjunhuang.okhttputils.okhttputils.OkHttpUtils;
+import com.library.jianjunhuang.okhttputils.okhttputils.https.HttpCode;
+
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
@@ -38,5 +40,6 @@ public class MyApplication extends Application {
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .build();
         OkHttpUtils.initUtils(okHttpClient);
+        HttpCode.initMap(this);
     }
 }
