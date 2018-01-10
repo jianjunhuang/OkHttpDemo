@@ -1,10 +1,12 @@
 package com.demo.jianjunhuang.okhttpdemo;
 
 import android.app.Application;
+
 import com.library.jianjunhuang.okhttputils.okhttputils.OkHttpUtils;
 import com.library.jianjunhuang.okhttputils.okhttputils.https.HttpCode;
 
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 
 /**

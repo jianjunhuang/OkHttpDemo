@@ -4,8 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 version = "0.1.0"
 android {
-  compileSdkVersion 25
-  buildToolsVersion "25.0.3"
+  compileSdkVersion 27
+  buildToolsVersion '27.0.2'
 
   defaultConfig {
     minSdkVersion 15
@@ -31,15 +31,15 @@ tasks.withType(Javadoc) {
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
-  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-    exclude group: 'com.android.support', module: 'support-annotations'
-  })
-  compile 'com.android.support:appcompat-v7:25.2.0'
-  compile 'com.squareup.okhttp3:okhttp:3.8.1'
-  compile 'com.google.code.gson:gson:2.8.0'
-  compile 'com.github.dcendents:android-maven-plugin:1.2'
-  testCompile 'junit:junit:4.12'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.github.dcendents:android-maven-plugin:1.2'
+    testCompile 'junit:junit:4.12'
 }
 // 项目的主页
 def gitUrl = 'https://github.com/jianjunhuang/OkHttpDemo'
