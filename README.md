@@ -4,7 +4,7 @@ OkHttp demo include OkHttp utils library
 ```
 compile 'com.library.jianjunhuang.okhttputils:okhttputils:0.0.2'
 ```
-## 出事化
+## 初始化
 ```
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
